@@ -1,3 +1,10 @@
+# **Finding Lane Lines on the Road** 
+
+## Writeup Template
+
+### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
+
+---
 
 **Finding Lane Lines on the Road**
 
@@ -27,16 +34,16 @@ The goals / steps of this project are the following:
 			**[[(int(0.49*width), int(0.59*height)), (int(0.15*width), height), (int(0.94*width), height), (int(0.51*width), int(0.59*height))]]**
 6.  Once we have the image with the edges detected in the region of interest (polygon), applied probabilistic hough lines function with the arguments rho : 1 pixel, theta: pi/180, threshold: 10, minLineLength: 15 and maxLineGap: 5, to detect the lines.
 7.  In order to draw a single line on the left and right lanes, I modified the draw_lines() function by doing the following
-		* 			  For each line detected above, the given end points are (x1, y1) and (x2, y2)  and the image size is given.
-		* 			  The x-cordinate value of the Left line points should be less than the polygon top left vertex. Similary the x-cordinate value of the Right line points should be greater than the polygon top right vertex.
-		* 			  Find the slope of the line using formula m = ((y2-y1)/(x2-x1))
-		* 			  Find the center point of the line using the formula c = [(x1+x2)/2, (y1+y2)/2].
-		* 			  The line with infinite slope (vertical line) and near horizontal lines (slope ~= 0) is ignored.
-		* 			  Average Slope of the Right Lines and Left Lines is calculated. Average center point of the right and left lines is calculated.
-		* 			  Finally Right line and Left line end points are calculated by using corresponding slope and y as img.shape[0], int(0.65*img.shape[0]).
-		* 			  With these end points solid line is super imposed on the original image.
+* 		For each line detected above, the given end points are (x1, y1) and (x2, y2)  and the image size is given.
+* 		The x-cordinate value of the Left line points should be less than the polygon top left vertex. Similary the x-cordinate value of the Right line points should be greater than the polygon top right vertex.
+* 		Find the slope of the line using formula m = ((y2-y1)/(x2-x1))
+* 		Find the center point of the line using the formula c = [(x1+x2)/2, (y1+y2)/2].
+* 		The line with infinite slope (vertical line) and near horizontal lines (slope ~= 0) is ignored.
+* 		Average Slope of the Right Lines and Left Lines is calculated. Average center point of the right and left lines is calculated.
+* 		Finally Right line and Left line end points are calculated by using corresponding slope and y as img.shape[0], int(0.65*img.shape[0]).
+* 		With these end points solid line is super imposed on the original image.
 
-The final output
+The final output images are
     
 ![alt text][image1]
 ![alt text][image2]
@@ -49,13 +56,4 @@ The final output
 ### 2. Identify potential shortcomings with your current pipeline
 
 
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
-
-
-### 3. Suggest possible improvements to your pipeline
-
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+One potential shortcoming would be when the deviation between the slope values of the right or left lines is huge then the average slope value might not be accurate. Especially in the curvy roads. 
